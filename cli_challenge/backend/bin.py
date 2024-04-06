@@ -14,7 +14,7 @@ class Bin:
         """
         Adds an item to the bin, adding it to items if it is new. If it already exists, update the weight
         :param product: The product to add to the bin
-        :return: True if the product is able to added to the bin
+        :return: True if the product is added/updated in the bin
         """
         not_added = product.ID not in self.items
         weight = self.weight + product.weight
@@ -27,10 +27,18 @@ class Bin:
         self.weight = weight
         return True
 
-    def remove_item(self, product: Product) -> int:
+    def remove_item(self, product: Product, amount: int) -> int:
+        """
+        Removes as much of an item from a bin as needed, without going below 0
+        :param product: Try to remove the amount from the specified product
+        :param amount: The amount to ask for
+        :return: The amount removed
+        """
         key = product.ID
         if key not in self.items:
             return 0
+
+        # Get
         min_weight = min(self.items[key], product.weight)
         self.items[key] -= min_weight
         return min_weight
