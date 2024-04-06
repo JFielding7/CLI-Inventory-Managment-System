@@ -1,17 +1,20 @@
 class Product:
-    def __init__(self, weight: float, ID: int, BPMT: float):
-        self.weight = weight
+    def __init__(self, bushels: float, ID: int, BPMT: float):
+        self.weight = bushels/BPMT
         self.ID = ID
         self.BPMT = BPMT
 
-    def receive(self, weight: float, MAX: int) -> bool:
-        if self.weight + weight > MAX:
-            return False
-        self.weight += weight
-        return True
 
-    def ship(self, weight: float) -> bool:
-        if self.weight < weight:
-            return False
-        self.weight -= weight
-        return True
+class Barley(Product):
+    def __init__(self, bushels: float, ID=0, BPMT=45.9296):
+        super().__init__(bushels, ID, BPMT)
+
+
+class Corn(Product):
+    def __init__(self, bushels: float, ID=1, BPMT=39.368):
+        super().__init__(bushels, ID, BPMT)
+
+
+class Wheat(Product):
+    def __init__(self, bushels: float, ID=2, BPMT=36.7437):
+        super().__init__(bushels, ID, BPMT)
