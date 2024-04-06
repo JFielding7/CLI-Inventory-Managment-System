@@ -8,4 +8,3 @@ class Elevator:
     def __init__(self):
         self.bins = numpy.empty(15, dtype=Bin)
 
-
