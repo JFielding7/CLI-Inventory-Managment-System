@@ -3,9 +3,10 @@ from product import Product
 
 class Bin:
     """Represents a bin in the elevator"""
+    MAX_PRODUCTS = 15  # Maximum number of products per bin
+    MAX_WEIGHT = 100  # Maximum weight per bin
+
     def __init__(self):
-        self.MAX_PRODUCTS = 15  # There can only be 15 products in a bin
-        self.MAX_WEIGHT = 100  # The bin cannot exceed 100 MT
         self.weight = 0  # The current weight of the bin
         self.items = {}  # A mapping of items
 
@@ -26,15 +27,10 @@ class Bin:
         self.weight = weight
         return True
 
-    def remove_item(self, product: Product) -> bool:
+    def remove_item(self, product: Product) -> int:
         key = product.ID
         if key not in self.items:
-            return False
-        weight = self.items[key]
-        if product.weight > weight:
-            return False
-        self.items[key] -= product.weight
-        self.weight -= product.weight
-        return True
-
-
+            return 0
+        min_weight = min(self.items[key], product.weight)
+        self.items[key] -= min_weight
+        return min_weight
