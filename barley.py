@@ -2,5 +2,5 @@ from product import Product
 
 
 class Barley(Product):
-    def __init__(self, weight, id=0, bpmt=45.9296):
-        super().__init__(weight, id, bpmt)
+    def __init__(self, weight: float, ID=0, BPMT=45.9296):
+        super().__init__(weight, ID, BPMT)
