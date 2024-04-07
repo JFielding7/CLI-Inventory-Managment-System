@@ -7,7 +7,7 @@ from cli_challenge.backend.order import Order
 class Database:
     @staticmethod
     def create_db():
-        connection = sqlite3.connect('cli.db')
+        connection = sqlite3.connect('../backend/cli.db')
 
         # cursor for database
         cursor = connection.cursor()
@@ -38,7 +38,7 @@ class Database:
 
     @staticmethod
     def load_database():
-        connection = sqlite3.connect('cli.db')
+        connection = sqlite3.connect('../backend/cli.db')
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM ORDERS_TO_INFO")
 
@@ -68,7 +68,7 @@ class Database:
 
     @staticmethod
     def update_order_status(order: Order):
-        connection = sqlite3.connect('cli.db')
+        connection = sqlite3.connect('../backend/cli.db')
         cursor = connection.cursor()
         cursor.execute(f"UPDATE ORDERS_TO_INFO SET STATUS={order.state} WHERE ORDER_ID={order.id}")
         connection.commit()
