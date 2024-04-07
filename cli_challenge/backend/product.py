@@ -5,8 +5,18 @@ class Product:
         self.ID = ID
         self.BPMT = BPMT
 
-    def __copy__(self):
-        return Product(self.BPMT*self.weight, self.ID, self.BPMT)
+    @staticmethod
+    def get_BPMT(ID: int) -> float:
+        match ID:
+            case 0:
+                return Barley.BPMT
+            case 1:
+                return Corn.BPMT
+            case 2:
+                return Wheat.BPMT
+            case _:
+                return -1
+
 
 class Barley(Product):
     ID = 0
