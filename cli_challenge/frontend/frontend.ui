@@ -118,22 +118,6 @@
               <set>AlignCenter</set>
              </property>
             </column>
-            <column>
-             <property name="text">
-              <string/>
-             </property>
-            </column>
-            <item>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </item>
            </widget>
           </item>
          </layout>
@@ -152,14 +136,14 @@
             <attribute name="horizontalHeaderCascadingSectionResizes">
              <bool>false</bool>
             </attribute>
-            <attribute name="horizontalHeaderMinimumSectionSize">
-             <number>100</number>
-            </attribute>
             <attribute name="horizontalHeaderDefaultSectionSize">
              <number>100</number>
             </attribute>
             <attribute name="horizontalHeaderHighlightSections">
              <bool>false</bool>
+            </attribute>
+            <attribute name="horizontalHeaderMinimumSectionSize">
+             <number>100</number>
             </attribute>
             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
              <bool>false</bool>
@@ -260,7 +244,7 @@
      <x>0</x>
      <y>0</y>
      <width>1311</width>
-     <height>22</height>
+     <height>18</height>
     </rect>
    </property>
   </widget>

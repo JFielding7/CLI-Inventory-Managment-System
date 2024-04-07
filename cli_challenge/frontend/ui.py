@@ -53,11 +53,12 @@ class Ui(QtWidgets.QMainWindow):
             weight = bins[i].weight
             if abs(weight) < 1e-6:
                 weight = 0
-            parent = QTreeWidgetItem(["Bin " + str(i + 1), str(weight)])
+            parent = QTreeWidgetItem(["Bin " + str(i + 1), "0" if weight == 0 else f"{weight:.4f} MT"])
             self.bins.addTopLevelItem(parent)
             self.bin_widgets.append(parent)
             for item in bins[i].items:
-                parent.addChild(QTreeWidgetItem([Product.product_name(item), str(bins[i].items[item])]))
+                weight = bins[i].items[item]
+                parent.addChild(QTreeWidgetItem([Product.product_name(item), "0" if weight == 0 else f"{weight:.4f} MT"]))
 
     def update_tree(self, bins: list[Bin]):
         for i in range(15):
