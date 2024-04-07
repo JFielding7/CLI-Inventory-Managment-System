@@ -81,4 +81,3 @@ class Database:
         cursor.execute(f"UPDATE ORDERS_TO_INFO SET STATUS={order.state} WHERE ORDER_ID={order.id}")
         connection.commit()
         connection.close()
-
