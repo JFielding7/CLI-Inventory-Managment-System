@@ -1,4 +1,5 @@
 class Product:
+    """Represents a general product, which contains the product identifier, weight, and bushels per metric ton"""
     def __init__(self, bushels: float, ID: int, BPMT: float):
         self.weight = bushels/BPMT
         self.ID = ID
