@@ -49,13 +49,21 @@ class Database:
 
         orders_dict = {}
         for curr_order in query:
-            orders_dict[curr_order[0]] = order = Order(curr_order[1], curr_order[0], curr_order[3], curr_order[4], curr_order[2])
+            ID = curr_order[0]
+            DATE = curr_order[1]
+            STATUS = curr_order[2]
+            COST = curr_order[3]
+            REVENUE = curr_order[4]
+            orders_dict[ID] = order = Order(DATE, ID, COST, REVENUE, STATUS)
             if order.state == Order.DELIVERED:
                 Order.TOTAL_PROFIT += order.profit()
         cursor.execute("SELECT * FROM ORDERS_TO_PRODUCTS")
         query = cursor.fetchall()
         for curr_order in query:
-            orders_dict[curr_order[0]].items.append(Product(curr_order[2], curr_order[1], Product.get_BPMT(curr_order[1])))
+            ID = curr_order[0]
+            PRODUCT_ID = curr_order[1]
+            BUSHELS = curr_order[2]
+            orders_dict[ID].items.append(Product(BUSHELS, PRODUCT_ID, Product.get_BPMT(curr_order[1])))
 
         connection.commit()
         connection.close()
@@ -69,9 +77,4 @@ class Database:
         connection.commit()
         connection.close()
 
-    create_db()
-    # orders = load_database()
-    # for order in orders:
-    #     print(order)
-    # orders[0].state = 1
-    # update_order_status(orders[0])
+
