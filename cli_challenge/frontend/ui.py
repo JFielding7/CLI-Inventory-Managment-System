@@ -16,9 +16,9 @@ class Ui(QtWidgets.QMainWindow):
         self.order_table.setRowCount(len(orders))
         for i in range(len(orders)):
 
-            item1 = QTableWidgetItem(str(orders[i].num)).setFont(QFont("Arial", 12))
-            item2 = QTableWidgetItem(str(orders[i].state)).setFont(QFont("Arial", 12))
-            item3 = QTableWidgetItem(str(orders[i].state)).setFont(QFont("Arial", 12))
+            item1 = QTableWidgetItem(str(orders[i].num))
+            item2 = QTableWidgetItem(str(orders[i].state))
+            item3 = QTableWidgetItem(str(orders[i].date))
             self.order_table.setItem(i, 0, item1)
             self.order_table.setItem(i, 1, item2)
             self.order_table.setItem(i, 2, item3)
