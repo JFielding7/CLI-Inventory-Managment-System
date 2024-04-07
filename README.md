@@ -1,3 +1,5 @@
+# Commercial Lynks Inc: Database Management System
+
 [See prompt details here](https://www.hackhounds.org/CLI-Challenge)
 
 ## Inspiration
@@ -16,7 +18,7 @@ We had some trouble with coming up with a design that we were all happy with usi
 We are very proud of how this turned out. Our database is written very compactly with an easy-to-understand indexing from itemID-weight. We are proud to display our GUI as we think it has visually turned out very well, not to mention its functionality working behind it.
 
 ## What we learned
-We learned and became confortable with new libraries, but most importantly, we learned that we are able to apply what we know already in conjunction with our drive and ability to learn in order to create a project that was initially outside of our comfort zone. Overall, our project was a major success.
+We learned and became comfortable with new libraries, but most importantly, we learned that we are able to apply what we know already in conjunction with our drive and ability to learn in order to create a project that was initially outside of our comfort zone. Overall, our project was a major success.
 
 ## What's next for Commercial Lynks Inc: Inventory Management System
 There can never be enough changes. Because we focused on code maintainability, we will be able to add new features to our program without interfering with preexisting ones.
