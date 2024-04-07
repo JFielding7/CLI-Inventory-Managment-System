@@ -3,11 +3,15 @@ import sys
 
 from PyQt6.QtWidgets import QTableWidgetItem
 
+from cli_challenge.backend.bin import Bin
 from cli_challenge.backend.database import Database
 from cli_challenge.backend.order import Order
 
 
 class Ui(QtWidgets.QMainWindow):
+
+    TREE_DISPLAY_COLUMNS = 2
+
     def __init__(self):
         super(Ui, self).__init__()
         uic.loadUi('frontend.ui', self)  # Load the .ui file
@@ -28,6 +32,12 @@ class Ui(QtWidgets.QMainWindow):
             self.order_table.setItem(i, 3, item3)
             self.order_table.setItem(i, 4, item4)
             self.order_table.setItem(i, 5, item5)
+
+    def populate_tree(self, bins: list[Bin]):
+        self.bins.setColumnCount(Ui.TREE_DISPLAY_COLUMNS)
+        for i in range(len(bins)):
+            pass
+
 
 
 if __name__ == '__main__':
