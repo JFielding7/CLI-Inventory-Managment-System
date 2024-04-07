@@ -50,7 +50,7 @@ class RailSystem:
         for product_ID, weight in items.items():
             while weight > 1e-6:
                 if curr_car is None or curr_car.is_full():
-                    curr_car = sample(self.available_cars, 1)[0]
+                    curr_car = sample(list(self.available_cars), 1)[0]
                     self.available_cars.remove(curr_car)
                     cars.append(curr_car)
                 weight = curr_car.load_product(product_ID, weight)
