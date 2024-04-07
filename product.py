@@ -4,17 +4,28 @@ class Product:
         self.ID = ID
         self.BPMT = BPMT
 
+    def __copy__(self):
+        return Product(self.BPMT*self.weight, self.ID, self.BPMT)
 
 class Barley(Product):
-    def __init__(self, bushels: float, ID=0, BPMT=45.9296):
+    ID = 0
+    BPMT = 45.9296
+
+    def __init__(self, bushels: float, ID=ID, BPMT=BPMT):
         super().__init__(bushels, ID, BPMT)
 
 
 class Corn(Product):
-    def __init__(self, bushels: float, ID=1, BPMT=39.368):
+    ID = 1
+    BPMT = 39.368
+
+    def __init__(self, bushels: float, ID=ID, BPMT=BPMT):
         super().__init__(bushels, ID, BPMT)
 
 
 class Wheat(Product):
-    def __init__(self, bushels: float, ID=2, BPMT=36.7437):
+    ID = 2
+    BPMT = 36.7437
+
+    def __init__(self, bushels: float, ID=ID, BPMT=BPMT):
         super().__init__(bushels, ID, BPMT)
