@@ -1,7 +1,5 @@
-from enum import Enum
-
-from product import Product
 from rail_system import *
+
 
 class Order:
     NOT_ORDERED = 0
@@ -10,7 +8,12 @@ class Order:
     ON_SHIP = 3
     DELIVERED = 4
 
-    def __init__(self, items, date):
+    def __init__(self, items, date, num):
         self.items = items
         self.date = date
+        self.num = num
         self.state = Order.NOT_ORDERED
+
+class OrderManager:
+    def __init__(self):
+        pass

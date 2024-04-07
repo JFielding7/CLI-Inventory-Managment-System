@@ -1,6 +1,5 @@
 import numpy
 
-from order import Order
 from random import sample
 from math import ceil
 
@@ -42,20 +41,19 @@ class RailSystem:
         for i in range(1, RailSystem.CARS + 1):
             self.available_cars.add(RailCar(i))
 
-    def load_order(self, order: Order) -> list[RailCar] | None:
-        cars_needed = ceil(sum(ceil(product.weight / RailCar.MAX_SECTION_WEIGHT) for product in order.items) / RailCar.MAX_PRODUCTS)
+    def load_order(self, items: dict[int, float]) -> list[RailCar] | None:
+        cars_needed = ceil(sum(ceil(weight / RailCar.MAX_SECTION_WEIGHT) for weight in items.values()) / RailCar.MAX_PRODUCTS)
         if cars_needed > len(self.available_cars):
             return None
         cars = []
         curr_car = None
-        for product in order.items:
-            weight = product.weight
+        for product_ID, weight in items.items():
             while weight > 1e-6:
                 if curr_car is None or curr_car.is_full():
                     curr_car = sample(self.available_cars, 1)[0]
                     self.available_cars.remove(curr_car)
                     cars.append(curr_car)
-                weight = curr_car.load_product(product.ID, weight)
+                weight = curr_car.load_product(product_ID, weight)
         return cars
 
     def return_car(self, rail_car: RailCar):
