@@ -77,4 +77,3 @@ class Database:
         connection.commit()
         connection.close()
 
-

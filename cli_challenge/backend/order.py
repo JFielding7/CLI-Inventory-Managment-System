@@ -37,3 +37,4 @@ class Order:
         if self.state == Order.DELIVERED:
             Order.TOTAL_PROFIT += self.profit()
         return self.state <= self.DELIVERED
+

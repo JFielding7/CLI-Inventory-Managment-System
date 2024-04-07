@@ -84,3 +84,4 @@ if __name__ == '__main__':
     window.populate_tree(elevator.bins)
 
     app.exec()  # Start the application
+

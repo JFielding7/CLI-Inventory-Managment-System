@@ -30,3 +30,4 @@ class Bin:
         if self.items[ID] == 0:
             self.items.pop(ID)
         return min_weight
+
