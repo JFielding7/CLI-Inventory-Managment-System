@@ -51,6 +51,7 @@ class Ui(QtWidgets.QMainWindow):
 
         self.total_profit.setText(f"Your Total Profit Is: ${Order.TOTAL_PROFIT:.2f}")
 
+    # Populates the tree with the contents of the bin
     def populate_tree(self, bins: list[Bin]):
         self.bin_widgets = []
         for i in range(len(bins)):
@@ -64,12 +65,14 @@ class Ui(QtWidgets.QMainWindow):
                 weight = bins[i].items[item]
                 parent.addChild(QTreeWidgetItem([Product.product_name(item), "0" if weight == 0 else f"{weight:.4f} MT"]))
 
+    # Updates the tree gui used for displaying the bins
     def update_tree(self, bins: list[Bin]):
         for i in range(15):
             self.bins.takeTopLevelItem(0)
         self.populate_tree(bins)
 
 
+# Runs the application
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication
     window = Ui()  # Create an instance of our class
