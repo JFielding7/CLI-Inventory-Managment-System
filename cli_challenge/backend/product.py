@@ -18,6 +18,7 @@ class Product:
                 return -1
 
 
+
 class Barley(Product):
     ID = 0
     BPMT = 45.9296

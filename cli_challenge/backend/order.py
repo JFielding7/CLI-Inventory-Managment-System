@@ -1,6 +1,4 @@
-from rail_system import *
-import datetime
-
+import mysql.connector
 
 class Order:
     NOT_ORDERED = 0
