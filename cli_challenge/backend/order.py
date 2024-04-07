@@ -1,5 +1,4 @@
-from rail_system import *
-
+import mysql.connector
 
 class Order:
     NOT_ORDERED = 0
