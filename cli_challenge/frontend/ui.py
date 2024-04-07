@@ -8,6 +8,7 @@ from cli_challenge.backend.bin import Bin
 from cli_challenge.backend.database import Database
 from cli_challenge.backend.order import Order
 from cli_challenge.backend.elevator import Elevator
+from cli_challenge.backend.product import Product
 
 class Ui(QtWidgets.QMainWindow):
 
@@ -32,10 +33,10 @@ class Ui(QtWidgets.QMainWindow):
 
     def populate_tree(self, bins: list[Bin]):
         for i in range(len(bins)):
-            item = ["bin "+str(i+1), str(bins[i].weight)]
-            q = QTreeWidgetItem(item)
-            self.bins.addTopLevelItem(q)
-            #for item in bins[i].items:
+            parent = QTreeWidgetItem(["Bin "+str(i+1), str(bins[i].weight)])
+            self.bins.addTopLevelItem(parent)
+            for item in bins[i].items:
+                parent.addChild(QTreeWidgetItem([Product.product_name(item), str(bins[i].items[item])]))
 
 
 if __name__ == '__main__':

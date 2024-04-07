@@ -17,6 +17,10 @@ class Product:
             case _:
                 return -1
 
+    @staticmethod
+    def product_name(ID: int) -> str:
+        return ["Barley", "Corn", "Wheat"][ID]
+
 
 
 class Barley(Product):
