@@ -176,6 +176,39 @@
             </font>
            </property>
           </column>
+          <column>
+           <property name="text">
+            <string>Cost</string>
+           </property>
+           <property name="font">
+            <font>
+             <family>OpenSymbol</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Revenue</string>
+           </property>
+           <property name="font">
+            <font>
+             <family>OpenSymbol</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Profit</string>
+           </property>
+           <property name="font">
+            <font>
+             <family>OpenSymbol</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+          </column>
          </widget>
         </item>
        </layout>

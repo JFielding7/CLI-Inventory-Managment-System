@@ -1,7 +1,5 @@
-import numpy
 from product import *
 from bin import Bin
-from order import Order
 
 
 class Elevator:
@@ -9,7 +7,7 @@ class Elevator:
     NUM_BINS = 15  # Number of bins in the elevator
 
     def __init__(self):
-        self.bins = numpy.array([Bin() for _ in range(self.NUM_BINS)])
+        self.bins = [Bin() for _ in range(self.NUM_BINS)]
         self.items = {}
 
     def receive(self, products: list[Product]) -> bool:
