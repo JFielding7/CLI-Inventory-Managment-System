@@ -1,6 +1,3 @@
-from product import Product
-
-
 class Bin:
     """Represents a bin in the elevator"""
     MAX_PRODUCTS = 15  # Maximum number of products per bin

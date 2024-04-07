@@ -54,7 +54,7 @@ class Database:
         cursor.execute("SELECT * FROM ORDERS_TO_PRODUCTS")
         query = cursor.fetchall()
         for curr_order in query:
-            orders_dict[curr_order[0]].items.append(Product(curr_order[2], curr_order[1], Product.get_BPMT(curr_order[0])))
+            orders_dict[curr_order[0]].items.append(Product(curr_order[2], curr_order[1], Product.get_BPMT(curr_order[1])))
 
         connection.commit()
         connection.close()

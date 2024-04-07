@@ -1,5 +1,3 @@
-import mysql.connector
-
 class Order:
 
     TOTAL_PROFIT = 0
@@ -18,18 +16,8 @@ class Order:
         self.cost = cost
         self.revenue = revenue
 
-    def status_str(self):
-        match self.state:
-            case 0:
-                return "Not Ordered"
-            case 1:
-                return "In Bin"
-            case 2:
-                return "On Rail Car"
-            case 3:
-                return "On Ship"
-            case 4:
-                return "Delivered"
+    def status_str(self) -> str:
+        return ["Not ordered", "In elevator", "On rail car", "Shipping", "Delivered"][self.state]
 
     def profit(self):
         return self.revenue - self.cost

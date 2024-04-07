@@ -1,5 +1,5 @@
-from product import *
-from bin import Bin
+from cli_challenge.backend.product import Product
+from cli_challenge.backend.bin import Bin
 
 
 class Elevator:
