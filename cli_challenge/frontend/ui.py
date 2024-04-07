@@ -1,5 +1,9 @@
 from PyQt5 import QtWidgets, uic
 import sys
+
+from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QTableWidgetItem
+
 from cli_challenge.backend.order import Order
 
 class Ui(QtWidgets.QMainWindow):
@@ -8,11 +12,16 @@ class Ui(QtWidgets.QMainWindow):
         uic.loadUi('frontend.ui', self)  # Load the .ui file
         self.show()  # Show the GUI
     def populate_table(self, orders: list[Order]):
-        self.orderTable.setRowCount(len(orders))
+        orders.append(Order({0: 50},"Jan 2", 1))
+        self.order_table.setRowCount(len(orders))
         for i in range(len(orders)):
-            self.orderTable.itemAt(i, 0).widget().setText(orders[i].num)
-            self.orderTable.itemAt(i, 1).widget().setText(orders[i].state)
-            self.orderTable.itemAt(i, 2).widget().setText(orders[i].date)
+
+            item1 = QTableWidgetItem(str(orders[i].num)).setFont(QFont("Arial", 12))
+            item2 = QTableWidgetItem(str(orders[i].state)).setFont(QFont("Arial", 12))
+            item3 = QTableWidgetItem(str(orders[i].state)).setFont(QFont("Arial", 12))
+            self.order_table.setItem(i, 0, item1)
+            self.order_table.setItem(i, 1, item2)
+            self.order_table.setItem(i, 2, item3)
 
 
 
@@ -20,4 +29,5 @@ class Ui(QtWidgets.QMainWindow):
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication
     window = Ui()  # Create an instance of our class
+    window.populate_table([])
     app.exec()  # Start the application
