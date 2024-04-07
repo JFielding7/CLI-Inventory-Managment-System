@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QTableWidgetItem
 
 from cli_challenge.backend.order import Order
 
+
 class Ui(QtWidgets.QMainWindow):
     def __init__(self):
         super(Ui, self).__init__()
@@ -22,8 +23,6 @@ class Ui(QtWidgets.QMainWindow):
             self.order_table.setItem(i, 0, item1)
             self.order_table.setItem(i, 1, item2)
             self.order_table.setItem(i, 2, item3)
-
-
 
 
 if __name__ == '__main__':

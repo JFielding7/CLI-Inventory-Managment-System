@@ -1,3 +1,5 @@
+import mysql.connector
+
 class Order:
     NOT_ORDERED = 0
     IN_BIN = 1
@@ -5,11 +7,11 @@ class Order:
     ON_SHIP = 3
     DELIVERED = 4
 
-    def __init__(self, items: dict[int: float], date, num: int):
-        self.items = items
+    def __init__(self, date, order_id, state=NOT_ORDERED):
+        self.items = []
         self.date = date
-        self.num = num
-        self.state = Order.NOT_ORDERED
+        self.id = order_id
+        self.state = state
 
 class OrderManager:
     def __init__(self):
