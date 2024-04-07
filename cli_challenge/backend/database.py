@@ -78,4 +78,3 @@ class Database:
         connection.close()
 
 
-Database.create_db()
