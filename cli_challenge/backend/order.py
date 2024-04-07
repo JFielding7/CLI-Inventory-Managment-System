@@ -22,6 +22,16 @@ class Order:
     def profit(self):
         return self.revenue - self.cost
 
-class OrderManager:
-    def __init__(self):
-        pass
+    def map_product_id_to_weight(self):
+        return {product.ID: product.weight for product in self.items}
+
+    def advance_state(self, window):
+        if self.state == self.DELIVERED:
+            return False
+        if self.state == self.NOT_ORDERED:
+            window.elevator.receive(self.items)
+            window.update_tree(window.elevator.bins)
+        elif self.state == self.IN_BIN:
+            window.rail_system.load_order(window.elevator.send(self.map_product_id_to_weight()))
+        self.state += 1
+        return self.state <= self.DELIVERED

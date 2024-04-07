@@ -9,7 +9,7 @@ class Database:
     def create_db():
         connection = sqlite3.connect('cli.db')
 
-        # cursor object
+        # cursor for database
         cursor = connection.cursor()
 
         cursor.execute("DROP TABLE IF EXISTS ORDERS_TO_PRODUCTS")
@@ -32,7 +32,7 @@ class Database:
                             REVENUE DOUBLE
                             )""")
         cursor.execute("""INSERT INTO ORDERS_TO_INFO (ORDER_ID, ORDER_DATE, STATUS, COST, REVENUE) 
-                            VALUES (?, ?, ?, ?, ?)""", (64, "Feb 26 2019", 3, 350, 669))
+                            VALUES (?, ?, ?, ?, ?)""", (64, "Feb 26 2019", 0, 350, 669))
         cursor.execute("""INSERT INTO ORDERS_TO_INFO (ORDER_ID, ORDER_DATE, STATUS, COST, REVENUE) 
                             VALUES (?, ?, ?, ?, ?)""", (123, "Feb 26 2019", 0, 250.98, 1760))
 
@@ -50,7 +50,8 @@ class Database:
         orders_dict = {}
         for curr_order in query:
             orders_dict[curr_order[0]] = order = Order(curr_order[1], curr_order[0], curr_order[3], curr_order[4], curr_order[2])
-            Order.TOTAL_PROFIT += order.profit()
+            if order.state == Order.DELIVERED:
+                Order.TOTAL_PROFIT += order.profit()
         cursor.execute("SELECT * FROM ORDERS_TO_PRODUCTS")
         query = cursor.fetchall()
         for curr_order in query:
@@ -60,7 +61,17 @@ class Database:
         connection.close()
         return [*orders_dict.values()]
 
+    @staticmethod
+    def update_order_status(order: Order):
+        connection = sqlite3.connect('cli.db')
+        cursor = connection.cursor()
+        cursor.execute(f"UPDATE ORDERS_TO_INFO SET STATUS={order.state} WHERE ORDER_ID={order.id}")
+        connection.commit()
+        connection.close()
+
     create_db()
     # orders = load_database()
-    # for order in orders.values():
-    #    print(order.items)
+    # for order in orders:
+    #     print(order)
+    # orders[0].state = 1
+    # update_order_status(orders[0])
