@@ -1,4 +1,5 @@
 from rail_system import *
+import datetime
 
 
 class Order:
@@ -8,7 +9,7 @@ class Order:
     ON_SHIP = 3
     DELIVERED = 4
 
-    def __init__(self, items, date, num):
+    def __init__(self, items: dict[int: float], date: datetime, num: int):
         self.items = items
         self.date = date
         self.num = num
