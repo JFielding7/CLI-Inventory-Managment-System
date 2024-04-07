@@ -1,3 +1,4 @@
+import os.path
 import sqlite3
 
 from cli_challenge.backend.product import Product
@@ -5,13 +6,16 @@ from cli_challenge.backend.order import Order
 
 
 class Database:
+    # Tester Code that creates a sample database
     @staticmethod
     def create_db():
+        # Connects to the Database
         connection = sqlite3.connect('../backend/cli.db')
 
         # cursor for database
         cursor = connection.cursor()
 
+        # Create the table used for mapping order to products
         cursor.execute("""CREATE TABLE IF NOT EXISTS ORDERS_TO_PRODUCTS(
                             ORDER_ID INT,
                             PRODUCT_ID INT,
@@ -36,9 +40,12 @@ class Database:
         connection.commit()
         connection.close()
 
+    # Loads the SQL Database, grabbing the previously stored orders
     @staticmethod
-    def load_database():
-        connection = sqlite3.connect('../backend/cli.db')
+    def load_database(path):
+        if not os.path.exists(path):
+            Database.create_db()
+        connection = sqlite3.connect(path)
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM ORDERS_TO_INFO")
 
@@ -66,6 +73,7 @@ class Database:
         connection.close()
         return [*orders_dict.values()]
 
+    # Updates the status of the order in the database when it is changed
     @staticmethod
     def update_order_status(order: Order):
         connection = sqlite3.connect('../backend/cli.db')
