@@ -5,6 +5,7 @@ class Product:
         self.ID = ID
         self.BPMT = BPMT
 
+    """Gets the bushels per metric ton of a product based on its ID"""
     @staticmethod
     def get_BPMT(ID: int) -> float:
         barley = 45.9296
@@ -12,6 +13,7 @@ class Product:
         wheat = 36.7437
         return [barley, corn, wheat][ID]
 
+    """Gets the product name based on the ID"""
     @staticmethod
     def product_name(ID: int) -> str:
         return ["Barley", "Corn", "Wheat"][ID]

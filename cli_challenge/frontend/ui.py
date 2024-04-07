@@ -4,6 +4,7 @@ import sys
 from PyQt6.QtWidgets import QTreeWidgetItem
 from PyQt6.QtWidgets import QTableWidgetItem, QPushButton
 
+from cli_challenge.backend import database
 from cli_challenge.backend.bin import Bin
 from cli_challenge.backend.database import Database
 from cli_challenge.backend.order import Order
@@ -14,16 +15,19 @@ from cli_challenge.backend.rail_system import RailSystem
 
 class Ui(QtWidgets.QMainWindow):
 
+    # Creates the UI
     def __init__(self):
         super(Ui, self).__init__()
         uic.loadUi('frontend.ui', self)  # Load the .ui file
         self.show()  # Show the GUI
 
+    # Constructs the buttons used for changing the status of the orders
     def construct_button(self, order, window, status_widget):
         button = QPushButton("Advance order")
         def click_function():
             order.advance_state(window)
             status_widget.setText(order.status_str())
+            database.Database.update_order_status(order)
             if order.state == Order.DELIVERED:
                 self.total_profit.setText(f"Your Total Profit Is: ${Order.TOTAL_PROFIT:.2f}")
             if order.state == Order.ON_RAIL_CAR:
@@ -62,7 +66,7 @@ class Ui(QtWidgets.QMainWindow):
 
     def update_tree(self, bins: list[Bin]):
         for i in range(15):
-            self.bins.takeTopLevelItem(1)
+            self.bins.takeTopLevelItem(0)
         self.populate_tree(bins)
 
 
@@ -71,7 +75,7 @@ if __name__ == '__main__':
     window = Ui()  # Create an instance of our class
     elevator = window.elevator = Elevator()
     railSystem = window.rail_system = RailSystem()
-    orders = Database.load_database()
+    orders = Database.load_database("../backend/cli.db")
     window.populate_table(orders, window)
 
     products = []

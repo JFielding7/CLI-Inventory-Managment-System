@@ -10,6 +10,9 @@ class Elevator:
         self.bins = [Bin() for _ in range(self.NUM_BINS)]
         self.items = {}
 
+    """
+    Stores the received products inside bins in the elevator
+    """
     def receive(self, products: list[Product]) -> bool:
         curr = 0
         for product in products:
@@ -26,6 +29,9 @@ class Elevator:
                     curr += 1
         return True
 
+    """
+    Sends the shipment out of the elevator 
+    """
     def send(self, products: dict[int: float]):
         send = {}
         for ID in products:

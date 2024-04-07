@@ -22,6 +22,12 @@ class Bin:
         return weight
 
     def remove(self, ID: int, weight: int) -> int:
+        """
+        Removes the item from the bin
+        :param ID: the id of the item
+        :param weight: the weight of the item
+        :return: the amount of weight removed from the bin
+        """
         if ID not in self.items:
             return 0
         min_weight = min(self.items[ID], weight)
