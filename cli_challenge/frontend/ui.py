@@ -28,6 +28,7 @@ class Ui(QtWidgets.QMainWindow):
             self.order_table.setItem(i, 3, item3)
             self.order_table.setItem(i, 4, item4)
             self.order_table.setItem(i, 5, item5)
+        self.total_profit.setText(f"Total Profit: ${Order.TOTAL_PROFIT:.2f}")
 
 
 if __name__ == '__main__':
