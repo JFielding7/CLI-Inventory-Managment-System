@@ -34,4 +34,6 @@ class Order:
         elif self.state == self.IN_BIN:
             window.rail_system.load_order(window.elevator.send(self.map_product_id_to_weight()))
         self.state += 1
+        if self.state == Order.DELIVERED:
+            Order.TOTAL_PROFIT += self.profit()
         return self.state <= self.DELIVERED

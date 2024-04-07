@@ -13,7 +13,6 @@ from cli_challenge.backend.rail_system import RailSystem
 
 
 class Ui(QtWidgets.QMainWindow):
-    WINDOW = None
 
     def __init__(self):
         super(Ui, self).__init__()
@@ -26,8 +25,10 @@ class Ui(QtWidgets.QMainWindow):
             order.advance_state(window)
             status_widget.setText(order.status_str())
             if order.state == Order.DELIVERED:
-                Order.TOTAL_PROFIT += order.profit()
                 self.total_profit.setText(f"Your Total Profit Is: ${Order.TOTAL_PROFIT:.2f}")
+            if order.state == Order.ON_RAIL_CAR:
+                window.elevator.send(order.map_product_id_to_weight())
+                window.update_tree(window.elevator.bins)
 
         button.clicked.connect(click_function)
         return button
@@ -49,7 +50,10 @@ class Ui(QtWidgets.QMainWindow):
     def populate_tree(self, bins: list[Bin]):
         self.bin_widgets = []
         for i in range(len(bins)):
-            parent = QTreeWidgetItem(["Bin " + str(i + 1), str(bins[i].weight)])
+            weight = bins[i].weight
+            if abs(weight) < 1e-6:
+                weight = 0
+            parent = QTreeWidgetItem(["Bin " + str(i + 1), str(weight)])
             self.bins.addTopLevelItem(parent)
             self.bin_widgets.append(parent)
             for item in bins[i].items:
@@ -63,7 +67,7 @@ class Ui(QtWidgets.QMainWindow):
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication
-    WINDOW = window = Ui()  # Create an instance of our class
+    window = Ui()  # Create an instance of our class
     elevator = window.elevator = Elevator()
     railSystem = window.rail_system = RailSystem()
     orders = Database.load_database()
