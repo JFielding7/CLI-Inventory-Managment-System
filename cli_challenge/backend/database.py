@@ -12,9 +12,6 @@ class Database:
         # cursor for database
         cursor = connection.cursor()
 
-        cursor.execute("DROP TABLE IF EXISTS ORDERS_TO_PRODUCTS")
-        cursor.execute("DROP TABLE IF EXISTS ORDERS_TO_INFO")
-
         cursor.execute("""CREATE TABLE IF NOT EXISTS ORDERS_TO_PRODUCTS(
                             ORDER_ID INT,
                             PRODUCT_ID INT,
