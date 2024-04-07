@@ -16,14 +16,18 @@ class Ui(QtWidgets.QMainWindow):
     def populate_table(self, orders: list[Order]):
         self.order_table.setRowCount(len(orders))
         for i in range(len(orders)):
-            print(orders[i])
-            item1 = QTableWidgetItem(str(orders[i].id))
-            item2 = QTableWidgetItem(str(orders[i].state))
-            item3 = QTableWidgetItem(str(orders[i].date))
-            self.order_table.setItem(i, 0, item1)
-            self.order_table.setItem(i, 1, item2)
-            self.order_table.setItem(i, 2, item3)
-            self.order_table
+            item0 = QTableWidgetItem(str(orders[i].id))
+            item1 = QTableWidgetItem(str(orders[i].status_str()))
+            item2 = QTableWidgetItem(str(orders[i].date))
+            item3 = QTableWidgetItem(str(orders[i].cost))
+            item4 = QTableWidgetItem(str(orders[i].revenue))
+            item5 = QTableWidgetItem(str(orders[i].revenue - orders[i].cost))
+            self.order_table.setItem(i, 0, item0)
+            self.order_table.setItem(i, 1, item1)
+            self.order_table.setItem(i, 2, item2)
+            self.order_table.setItem(i, 3, item3)
+            self.order_table.setItem(i, 4, item4)
+            self.order_table.setItem(i, 5, item5)
 
 
 if __name__ == '__main__':
