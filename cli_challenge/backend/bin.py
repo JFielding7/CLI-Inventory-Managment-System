@@ -10,22 +10,26 @@ class Bin:
         self.weight = 0  # The current weight of the bin
         self.items = {}  # A mapping of items
 
-    def add_item(self, product: Product) -> int:
+    def add(self, ID: int, weight: int) -> int:
         """
         Adds an item to the bin, adding it to items if it is new. If it already exists, update the weight
-        :param product: The product to add to the bin
+        :param ID: the ID of the product being added
+        :param weight:  the weight of the product being added
         :return: The amount of weight inputted
         """
-        if product.ID not in self.items:
-            self.items[product.ID] = 0
-        weight = min(self.MAX_WEIGHT - self.weight, product.weight)
+        if ID not in self.items:
+            self.items[ID] = 0
+        weight = min(self.MAX_WEIGHT - self.weight, weight)
         self.weight += weight
-        self.items[product.ID] += weight
+        self.items[ID] += weight
         return weight
 
-    def remove_item(self, product: Product) -> int:
-        if product.ID not in self.items:
+    def remove(self, ID: int, weight: int) -> int:
+        if ID not in self.items:
             return 0
-        min_weight = min(self.items[product.ID], product.weight)
-        self.items[product.ID] -= min_weight
+        min_weight = min(self.items[ID], weight)
+        self.weight -= min_weight
+        self.items[ID] -= min_weight
+        if self.items[ID] == 0:
+            self.items.pop(ID)
         return min_weight
