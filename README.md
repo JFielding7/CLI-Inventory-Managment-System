@@ -1,4 +1,5 @@
 # Commercial Lynks Inc: Database Management System
+How to run: clone the repository and run "ui.py"
 
 [See prompt details here](https://www.hackhounds.org/CLI-Challenge)
 
