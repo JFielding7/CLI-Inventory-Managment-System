@@ -8,6 +8,8 @@ class Ui(QtWidgets.QMainWindow):
         self.show()  # Show the GUI
 
 
+
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication
     window = Ui()  # Create an instance of our class
